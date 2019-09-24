@@ -16,6 +16,8 @@ def love9():
 	output 				= 1
 	randomNumberLength 	= findNumberOfDigits(randomN)
 	listOf9s			= [9,19,29,39,49,59,69,79,89,99]
+	possibleAnswers		= []
+
 
 
 	print ("The random number is: ", randomN, "\n", "The last digit in the string is: ", str(randomN)[-1], "\n")
@@ -23,8 +25,16 @@ def love9():
 		print("Congrats the last digit is 9!")
 		print (output)
 
-	else: 
-		print(-1)
+	elif True: 
+		xeno 	= 0
+		morph	= 0
+		for i in range(len(listOf9s)):
+			print (listOf9s[xeno] + listOf9s[morph])
+			possibleAnswers.append(listOf9s[xeno] + listOf9s[morph])
+			morph += 1
+		print (possibleAnswers)
+
+	print ("\n\n\nOutput: ", output)
 
 
 
