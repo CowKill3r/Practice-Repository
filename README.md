@@ -1,2 +1,3 @@
 # Practice-Repository
-Simple practice problems from dailycodingproblem.com
+Practicing Python and Java programming.
+Most of the problems are technical interview problems with my solutions.
