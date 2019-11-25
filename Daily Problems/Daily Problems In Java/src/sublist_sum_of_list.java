@@ -10,7 +10,7 @@ public class sublist_sum_of_list {
 	private static int sum(List<Integer> L, int i,int j) {
 		System.out.println(L+"\n"+"index i = "+i+"\n"+"index j = "+j);
 		List<Integer> subListToSum = new ArrayList<Integer>();
-		subListToSum.addAll(L.subList(i, j-1)); //sublist include i, exclude j
+		subListToSum.addAll(L.subList(i, j)); //sublist include i, exclude j
 		int result = 0;
 		
 		for (int allInts : subListToSum) {
