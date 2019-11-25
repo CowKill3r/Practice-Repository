@@ -1,0 +1,17 @@
+1) Are two strings anagrams?
+	1b) group strings by anagrams
+
+make an array of size 26 a-z, make them all 0
+every time there is an occurence of the corresponding letter increment by 1
+, then compare the first array to the second array. Sort the array based on counts
+
+use a map for 1b
+use a map to compare each possible anagram
+
+2) kth element of two sorted arrays
+	2b) n sorted arrays
+use a max heap with k number of sorted arrays
+put every single element in the sorted arrays into the max heap
+max heap of the smallest elements
+
+3)validate a binary search tree
