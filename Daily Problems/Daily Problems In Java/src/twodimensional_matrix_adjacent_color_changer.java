@@ -31,18 +31,40 @@ public class twodimensional_matrix_adjacent_color_changer {
 		}
 	}
 	
+	private static void checkAdjacent(String[][] s, String color, int x, int y) {
+		String lookAtMe = s[x][y];
+		int count = 0;
+		
+		int rows = s.length;
+		int colm = s[0].length;
+		
+		for (int i = 0; i < rows; ++i) {
+			for (int j = 0; j < colm; ++j) {
+				
+				if ((j+1 < colm) && (s[i][j] == s[i][j+1])) {
+					s[i][j] = color;
+					
+				if ((i+1 < rows) && (s[i][j] == s[i+1][j])) {
+					s[i][j] = color;
+				}
+				
+				}
+			}
+		}
+	}
+	
 	private static int replaceColor(String color, int x, int y) { 
 		ArrayList<String> colorList = new ArrayList<String>();
-		colorList.add("R");
-		colorList.add("G");
-		colorList.add("B");
-		colorList.add("Y");
+		colorList.add("X");
+		colorList.add("O");
+		//colorList.add("B");
+		//colorList.add("Y");
 		
 		Random myRandom = new Random();
 		String[][] pixels = new String[5][5]; //make a 2d array of pixels with random colors
 		for (int i = 0; i < pixels.length; i++) {
 			for (int j = 0; j < pixels[i].length; j++) {
-				pixels[i][j] = colorList.get(myRandom.nextInt(4));
+				pixels[i][j] = colorList.get(myRandom.nextInt(2));
 				System.out.print(pixels[i][j] + " ");
 			}
 			System.out.println("");
@@ -56,29 +78,13 @@ public class twodimensional_matrix_adjacent_color_changer {
 		 * 		2a) then: thing = color
 		 * 3) else: function (array)*/
 		
-		int colorchange = 0;
-		String lookAtMe = pixels[x][y];
-		for (int i = 0; i < pixels.length; i++) { //rows
-			for (int j = 0; j < pixels[i].length; j++) { //columns
-				if (!pixels[x][y].matches(color)) {
-					pixels[x][y] = color;
-				}
-				else {
-					if (pixels[x][y+1].matches(lookAtMe)) { //direction = south
-						pixels[x][y+1] = color;
-					}
-					if (pixels[x][y-1].matches(lookAtMe)) { //direction = north
-						pixels[x][y-1] = color;
-					}
-					if (pixels[x+1][y].matches(lookAtMe)) { //direction = east
-						pixels[x+1][y] = color;
-					}
-					if (pixels[x-1][y].matches(lookAtMe)) { //direction = west
-						pixels[x-1][y] = color;
-					}
-				}
+		for (int i = 0; i < pixels.length; i++) {
+			for (int j = 0; j < pixels[i].length; j++) {
+				checkAdjacent(pixels, color, x, y);
 			}
 		}
+		
+		//checkAdjacent(pixels, color, x, y);
 		
 		printColors(pixels);
 		
@@ -87,7 +93,7 @@ public class twodimensional_matrix_adjacent_color_changer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		replaceColor("B", 2, 2);
+		replaceColor("O", 2, 2);
 
 	}
 
