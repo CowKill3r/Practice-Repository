@@ -4,6 +4,8 @@ import java.io.*;
 
 public class length_of_longest_path {
 	/*
+	 	Author: Octavian Stoch
+	 	Date: 12/5/2019
 	Given a tree where each edge has a weight, 
 	compute the length of the longest path in the tree.
 
@@ -23,33 +25,57 @@ public class length_of_longest_path {
 
 	The path does not have to pass through the root, 
 	and each node can have any amount of children.
+	
+	
 	SAMPLE CODE FOR MIN SPANNING TREE GREEDY ALG 
 	(https://www.geeksforgeeks.org/
 	kruskals-minimum-spa
 	nning-tree-algorithm-greedy-algo-2/)
+	
+	also using adjacency list to help with creating the graph here
+	(https://algorithms.tutorialhorizon.com/
+	graph-representation-adjacency-matrix-and
+	-adjacency-list/)
 	*/
 	
-		class Edge implements Comparable<Edge>{ //represent a graph edge
+		static class Edge{ //class represent a graph edge
 			int source, destination, weight;
 			
-			public int compareTo(Edge compareEdge) {//compare edges based on weight
-				return this.weight-compareEdge.weight;
+			public Edge (int source, int destination, int weight) {
+				this.source 		= source;
+				this.destination	= destination;
+				this.weight 		= weight;
 			}
 		};
 		
-		class subset { //represent a subset for a union-find
-			int parent, rank;
-		};
+		static class Graph {  //class to represent a graph
+			int vertices;
+			LinkedList<Edge> [] adjacencyList; //list of edges using adjecencylist (were gonna use DFS)
 		
-		int V, E; //V = number of vertices . E = number of edges
-		Edge edge[]; //array of edges
-		
-		length_of_longest_path(int v, int e){ //create a graph with number of v and e
-			V = v;
-			E = e;
-			edge = new Edge[E];
-			for (int i = 0; i < e; i++) {
-				edge[i] = new Edge();
+			Graph (int vertices){
+				this.vertices = vertices;
+				adjacencyList = new LinkedList[vertices];
+				
+				for (int i = 0; i < vertices ; ++i) {
+					adjacencyList[i] = new LinkedList<>();
+				}
+			}
+			
+			public void addEdge(int source, int destination, int weight) {
+				Edge edge = new Edge(source, destination, weight);
+				adjacencyList[source].addFirst(edge);
+				//undirected graph so don't need to have strict adding rules
+			}
+			
+			public void printGraph() {
+				for (int i = 0; i < vertices; i++) {
+					LinkedList<Edge> list = adjacencyList[i];
+					for (int j = 0; j < list.size(); j++) {
+						System.out.println("VERTEX- "+i+" IS CONNECTED TO "+
+								list.get(j).destination+" WITH WEIGHT "+
+								list.get(j).weight);
+					}
+				}
 			}
 		}
 	
@@ -65,9 +91,7 @@ public class length_of_longest_path {
 			 g   h
 		 */
 		
-		int V = 8; //number of vertices in the graph
-		int E = 6; //number of edges in the graph
-		length_of_longest_path graph = new length_of_longest_path(V, E);
+		Graph graph = new Graph(8);
 		
 		/*	0 : A, 1 : B, 2 : C, 3 : D, 4 : E
 		 *	5 : F, 6 : G, 7 : H  
@@ -76,11 +100,20 @@ public class length_of_longest_path {
 		 * Add edges below:
 		 * add edge a-b*/
 		
-		graph.edge[0].source 		= 0;
-		graph.edge[0].destination	= 1;
-		graph.edge[0].weight		= 3;
+		graph.addEdge(0, 1, 3); //a-b: 3
+		graph.addEdge(0, 2, 5); //a-c: 5
+		graph.addEdge(0, 3, 8); //a-d: 8
+		graph.addEdge(3, 4, 2); //d-e: 2
+		graph.addEdge(3, 5, 4); //d-f: 4
+		graph.addEdge(4, 6, 1); //e-g: 1
+		graph.addEdge(4, 7, 1); //e-h: 1
 		
-		//TODO: continue creating the weighted graph
+		graph.printGraph();
+		
+		/*
+		TODO: continue creating the weighted graph and do logic for finding highest total weight
+		using breadth first search
+		*/
 		
 		
 	}
