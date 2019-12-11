@@ -77,6 +77,39 @@ public class length_of_longest_path {
 					}
 				}
 			}
+			
+			public void totalWeight() { //find total weight of graph
+				int res = 0;
+				for (int i = 0; i < vertices; i++) {
+					LinkedList<Edge> list = adjacencyList[i];
+					for (int j = 0; j < list.size(); j++) {
+						res+= list.get(j).weight;
+					}
+				}
+				System.out.println("Total weight for graph is: " + res);
+			}
+			
+			public void longestPath() {
+				/*Approach
+				 * 1) Initialize dist[] = {NINF, NINF, ….} 
+				 * and dist[s] = 0 where s is the source vertex. Here NINF means negative infinite.
+					2) Create a toplogical order of all vertices.
+					3) Do following for every vertex u in topological order.				
+					Do following for every adjacent vertex v of u
+					if (dist[v] < dist[u] + weight(u, v))
+					dist[v] = dist[u] + weight(u, v)
+					adjacencyList is the list of vertices*/
+				int finalWeight = 0;
+				for (int i = 0; i < vertices; i++) {
+					LinkedList<Edge> list = adjacencyList[i];
+					for (int j = 0; j < list.size(); j++) {
+						if (list.get(j).source < list.get(j).destination) {
+							finalWeight += list.get(j).weight;
+						}
+					}
+				}
+				System.out.println("Longestpath: " + finalWeight);
+			}
 		}
 	
 	
@@ -109,6 +142,8 @@ public class length_of_longest_path {
 		graph.addEdge(4, 7, 1); //e-h: 1
 		
 		graph.printGraph();
+		graph.totalWeight();
+		graph.longestPath();
 		
 		/*
 		TODO: continue creating the weighted graph and do logic for finding highest total weight
