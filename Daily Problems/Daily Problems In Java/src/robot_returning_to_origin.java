@@ -32,7 +32,7 @@ public class robot_returning_to_origin {
 	}
 
 	public static void main(String[] args) {
-		returnToOrigin("UULLRUDRLLU"); //robot starts at origin
+		returnToOrigin("UULRDRLLUUDRRR"); //robot starts at origin
 	}
 
 }
