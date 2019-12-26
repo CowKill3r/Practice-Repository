@@ -49,7 +49,7 @@ public class all_full_binarytree {
 		}
 		
 	public static void main(String[] args) {
-		solution(8);
+		solution(3);
 
 	}
 
