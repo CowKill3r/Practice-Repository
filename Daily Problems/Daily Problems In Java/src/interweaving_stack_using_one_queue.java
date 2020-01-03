@@ -34,16 +34,51 @@ public class interweaving_stack_using_one_queue {
 	
 	private static Queue<Integer> splitStackIntoTwo(Stack<Integer> st) {
 		Queue<Integer> numberQueue = new LinkedList<Integer>();
+		Stack<Integer> numberStack = new Stack<Integer>();
+		//numberStack.addAll(st);
 															//make a new queue object of type LinkedList
-		int middleOfStack = st.size()/2;					//middle of the stack is size divide by 2
+		int middleOfStack	= st.size()/2;					//middle of the stack is size divide by 2
+		int starfish		= 0;
 		
 		for (int i = middleOfStack; i < st.size(); i++) {
 			numberQueue.add(st.get(i));						//add each integer of the stack starting at the middle
+			numberStack.add(st.get(starfish));
+			starfish += 1;
 		}
 	
-		System.out.println("\nNew stack = "+st+"\nNew queue = "+numberQueue);
+		System.out.println("\nNew queue = "+numberQueue+"\nnumberStack = "+numberStack);
+		reverseQueue(numberQueue);
+		
 		return numberQueue;
 	}
+	
+	private static Stack<Integer> reverseQueue(Queue<Integer> qu){
+	     Stack<Integer> numStack	= new Stack<>();
+	     Queue<Integer>	newQueue	= new LinkedList<Integer>();
+	     while (!qu.isEmpty()) { 
+	    	 numStack.add(qu.peek()); 
+	    	 qu.remove(); 
+	     } 
+	     
+	     while (!numStack.isEmpty()) { 
+	    	 newQueue.add(numStack.peek()); 
+	    	 numStack.pop(); 
+	     }
+	      
+	     
+		System.out.println("\nreversedQueue<Stack> = "+newQueue);
+		
+		return numStack;
+	}
+	
+	//private static Stack<Integer> interweave()
+	/* while (stack && queue !.isEmpty() {
+	 * 		finalStack.add(stack.get(i))
+	 * 		stack.remove(stack.get(i)
+	 * 		finalStack.add(queue.peek())
+	 * 		queue.remove()
+	 * }
+	 * print the resulting stack*/
 
 	public static void main(String[] args) {
 		solution();
