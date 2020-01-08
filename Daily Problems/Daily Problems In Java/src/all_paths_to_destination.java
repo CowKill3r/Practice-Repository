@@ -21,15 +21,19 @@ public class all_paths_to_destination {
 		2--->3
 		There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
 	 */
+	/*
 	public static List<List<Integer>> solution(int [][] graph){
 		return (myList(graph, 0));
 	}
-	
+
+	 */
+
+	/*
 	public static List<List<Integer>> myList (int [][] graph, int node){
-		
 	}
+	 */
 	/*Let N be the number of nodes in the graph. If we are at node N-1, 
 	 * the answer is just the path {N-1}. Otherwise, if we are at node node, 
 	 * the answer is {node} + {path from nei to N-1} for each neighbor nei of node. 
 	 * This is a natural setting to use a recursion to form the answer.*/
-};
+}
